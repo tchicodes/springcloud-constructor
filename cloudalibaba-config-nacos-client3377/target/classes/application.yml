@@ -1,0 +1,6 @@
+spring:
+  profiles:
+    active: dev
+
+config:
+  info: this is a native test.

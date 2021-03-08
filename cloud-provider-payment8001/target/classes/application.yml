@@ -13,8 +13,27 @@ spring:
     url: jdbc:mysql://192.168.1.100:3306/cloud?useUnicode=true&characterEncoding=utf8&useSSL=false
     username: root
     password: root
+  zipkin:
+    base-url: http://localhost:9411
+  sleuth:
+    sampler:
+      probability: 1  #采样率值介于0-1之间,1标识全部采集
 
 mybatis:
   mapperLocations: classpath:mybatis/mapper/*.xml
   #所有entity别名类所在包
-  type-aliases-package: com.tchi.springcloud.entity
+  type-aliases-package: com.tchi.springcloud.config.entity
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka
+  instance:
+    instance-id: Payment8001
+    prefer-ip-address: true
+    #Eureka客户端向服务端发送心跳的时间间隔.单位为秒(默认30 秒)
+    lease-renewal-interval-in-seconds: 1
+    #Eureka服务端在收到最后一次心跳等待时间上限.单位为秒(默认90 秒),超时将剔除服务
+    lease-expiration-duration-in-seconds: 2
